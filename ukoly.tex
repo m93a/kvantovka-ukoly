@@ -1,0 +1,608 @@
+% !TEX program = xelatex
+
+\documentclass[10pt,a4paper]{article}
+\usepackage[top = 1.5cm, bottom = 1.5cm, left = 1.5cm, right = 1.5cm]{geometry}
+
+\usepackage{titling}
+\usepackage[czech]{babel}
+\usepackage{graphicx}
+\usepackage{lmodern}
+\usepackage{hyperref}
+\usepackage{setspace}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{gensymb}
+\usepackage{units}
+\usepackage{bm}
+\delimitershortfall=-1pt
+
+\usepackage{gnuplottex}
+\usepackage{epstopdf}
+
+\newcommand{\comm}[2]{\left[ #1, #2 \right]}
+\newcommand{\const}[1]{\text{\rmfamily\upshape #1}}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+
+\newcommand{\mat}[1]{
+    \begin{pmatrix}
+        #1
+    \end{pmatrix}
+}
+
+\newcommand{\mata}[2]{
+    \left(
+    \begin{array}{@{}#1@{}}
+        #2
+    \end{array}
+    \right)
+}
+
+\renewcommand{\d}[1]{\;\const{d}#1}
+\newcommand{\dd}[2]{\frac{\const{d} #1}{\const{d} #2} \;}
+\newcommand{\pd}[2]{\frac{\partial  #1}{\partial  #2} \;}
+
+\newcommand{\bra}[1]{\left< #1 \right|}
+\newcommand{\ket}[1]{\left| #1 \right>}
+\newcommand{\braket}[2]{\left< #1 \middle| #2 \right>}
+
+\newcommand{\e}[1]{\const{e}^{#1}}
+\renewcommand{\i}{\const{i}}
+
+\begin{document}
+
+\title{Kvantová mechanika I: Domácí úkoly}
+\author{Michal Grňo}
+\date{\today}
+
+\maketitle
+
+\section{Cvičení 9. 10.}
+
+\subsection{Zadání}
+Jsou dány operátory $\hat A$ a $\hat B$,
+\begin{gather*}
+    \comm{\hat A}{\hat B} \neq 0,
+    \\[5pt]
+    \comm{\hat A}{\comm{\hat A}{\hat B}} =
+    \comm{\hat B}{\comm{\hat A}{\hat B}} = 0.
+\end{gather*}
+Nalezněte, čemu se rovná operátor $\hat C$, pro který platí
+\begin{gather*}
+    \e{\hat A} \, \e{\hat B} =
+    \e{\hat A + \hat B} \, \e{\hat C} =
+    \e{\hat C} \, \e{\hat A + \hat B} =
+    \e{\hat A + \hat B + \hat C}.
+\end{gather*}
+
+\subsection{Řešení}
+Na cvičení jsme se přesvědčili, že užitečným nástrojem při odvozování vztahů pro operátorovu exponenciolu je výraz $\e{\xi \hat A}$ a jeho derivace podle $\xi$. Tohoto triku využijeme i nyní – nalezneme $\hat X(\xi)$ takové, aby platilo:
+\begin{align*}
+    \e{\hat X(\xi)} = \e{\xi \hat A} \; \e{\xi \hat B}.
+\end{align*}
+Derivací vztahu získáme:
+\begin{align*}
+    \pd{}{\xi} \; \e{\hat X(\xi)} &= \pd{}{\xi} \; \e{\xi \hat A} \; \e{\xi \hat B}
+    \\[10pt]
+    \hat X'(\xi) \; \e{\hat X(\xi)} &= \hat A \; \e{\xi \hat A} \; \e{\xi \hat B} + \e{\xi \hat A} \; \hat B \; \e{\xi \hat B}
+    \\[10pt]
+    \hat X'(\xi) \; \e{\hat X(\xi)} &= \left( \hat A  + \e{\xi \hat A} \; \hat B \; \e{\xi \hat B} \; \e{-\xi \hat B} \; \e{-\xi \hat A} \right) \e{\xi \hat A} \e{\xi \hat B}
+    \\[10pt]
+    \hat X'(\xi) \; \e{\hat X(\xi)} &= \left( \hat A  + \e{\xi \hat A} \; \hat B \; \e{-\xi \hat A} \right) \e{\hat X(\xi)}
+    \\[10pt]
+    \hat X'(\xi) &= \hat A  + \e{\xi \hat A} \; \hat B \; \e{-\xi \hat A}
+\end{align*}
+Využili jsme vlastnosti, že operátor $\e{\hat A}$ je vždy regulární a jeho inverze je $\e{-\hat A}$. Připomeneme si Glauberův vzorec:
+\begin{gather*}
+    \e{\hat M} \; \hat N \e{-\hat M}
+    = \sum_{n=0}^\infty \frac{1}{n!} \; \hat K_n(\hat M, \hat N)
+    \\[10pt]
+    \hat K_0(\hat M, \hat N) = \hat N
+    \\[10pt]
+    \hat K_{n+1}(\hat M, \hat N) = \left[ \hat M, \hat K_n \right]
+\end{gather*}
+Dosazením do naší rovnice získáme:
+\begin{align*}
+    \hat X'(\xi) &= \hat A + \sum_{n=0}^\infty \frac{1}{n!} \; \hat K_n(\xi \hat A, \hat B)
+    \\[10pt]
+    \hat X'(\xi) &= \hat A + \sum_{n=0}^\infty \xi^n \frac{1}{n!} \; \hat K_n(\hat A, \hat B)
+    \\[10pt]
+    \hat X(\xi) &= \int \left( \hat A + \sum_{n=0}^\infty \xi^n \frac{1}{n!} \; \hat K_n(\hat A, \hat B) \right) \d{\xi}
+    \\[10pt]
+    \hat X(\xi) &= \xi \hat A + \sum_{n=0}^\infty \frac{\xi^{n+1}}{n+1} \; \frac{1}{n!} \; \hat K_n(\hat A, \hat B) + \hat X(0)
+\end{align*}
+Dosazením do $\e{\hat X(\xi)} = \e{\xi \hat A} \; \e{\xi \hat B}$ vidíme, že $\hat X(0)$ musí být nula. Dosadíme-li nyní $\xi=1$, máme tedy odvozený obecný tvar Bakerovy-Campbellovy-Hausdorffovy rovnice:
+\begin{align*}
+    \e{\hat A} \; \e{\hat B} = \exp \left(
+        \hat A + \sum_{n=0}^\infty \frac{1}{(n+1)!} \; \hat K_n(\hat A, \hat B)
+    \right).
+\end{align*}
+Nakonec použijeme ze zadání podmínku, že operátory $\hat A, \hat B$ komutují se svým komutátorem, tedy $\hat K_0 = \hat B$, $\hat K_1 = \comm{\hat A}{\hat B}$, $\hat K_n = 0$ pro $n>1$. Konečný výsledek je tedy:
+\begin{align*}
+    \e{\hat A}\e{\hat B} = \e{\hat A + \hat B + \tfrac{1}{2} \comm{\hat A}{\hat B}}.
+\end{align*}
+
+
+\pagebreak
+\section{Cvičení 16. 10.}
+
+\subsection{Zadání první části}
+Mějme dvouhladinový systém popsaný Hamiltoniánem:
+\begin{align*}
+    \hat H &= \hat H_0 + \hat H_1,
+    \\[5pt]
+    \hat H_0 &= \mat{e & 0 \\ 0 & -e},
+    \\[5pt]
+    \hat H_1 &= \mat{0 & \nu \\ \nu & 0}.
+\end{align*}
+Spočtěte vlastní hodnoty $E_{+}, E_{-}$ a vlastní vektory $\ket{E_{+}}, \ket{E_{-}}$ Hamiltoniánu, zakreslete závislost $E_{\pm}(\nu)$, vypočtěte vektory $\ket{E_{\pm}(\nu=0)}$ a $\ket{E_{\pm}(\nu\to\infty)}$.
+
+\subsection{Řešení první části}
+Začneme nalezením vlastních energií:
+\begin{align*}
+    &\hat H
+    = \mat{ e & 0 \\ 0 & -e } + \mat{ 0 & \nu \\ \nu & 0 }
+    = \mat{ e & \nu \\ \nu & -e },
+    \\[15pt]
+    &\det\left( \hat H - E \, \hat 1 \right)
+    = -\left( e^2 - E^2 \right) \left( e^2 + E^2 \right) - \nu^2
+    = E^2 - e^2 - \nu^2
+    = 0
+    \\
+    & \; \implies E_{\pm} = \pm \sqrt{ e^2 + \nu^2 }.
+    \\
+\end{align*}
+
+Závislost $E_{\pm}$ na $\nu$ je potom:
+\begin{figure}[h!]
+    \centering
+    \begin{gnuplot}[terminal=epslatex,terminaloptions={color size 12cm, 5cm}]
+        E(nu) = sqrt(1 + nu**2)
+
+        set xlabel "$\\frac{\\nu}{e}$"
+        set ylabel "$\\frac{E_{\\pm}}{e}$" rotate by 0
+
+        set key center top
+
+        set xrange [-5:5]
+        set yrange [-5:5]
+
+        plot E(x) title "$E_{+}$", -E(x) title "$E_{-}$"
+    \end{gnuplot}
+\end{figure}
+
+\bigskip
+
+Pokračujeme vypočtením odpovídajících vlastních vektorů:
+\begin{align*}
+    \ker\left( \hat H - E_{+} \, \hat 1 \right)
+    = \ker\mat{ e - E_{+} & \nu }
+    \ni \frac{1}{\sqrt{\nu^2 + (E_{+} - e)^2}} \mat{ \nu \\ E_{+}-e } = \ket{E_{+}},
+    \\[5pt]
+    \ker\left( \hat H + E_{+} \, \hat 1 \right)
+    = \ker\mat{ e + E_{+} & \nu }
+    \ni \frac{1}{\sqrt{\nu^2 + (E_{+} + e)^2}} \mat{ -\nu \\ E_{+}+e } = \ket{E_{-}}.
+\end{align*}
+
+Nakonec vypočteme vlastní vektory pro $\nu=0$ a $\nu\to\infty$. Při $\nu=0$ je $\hat H = \hat H_0$ a vlastní vektory známe přímo ze zadání. Případ $\nu\to\infty$ vyšetříme pomocí limity.
+\begin{align*}
+    &\ket{E_{+}(\nu = 0)} = \mat{1 \\ 0}, &
+    &\ket{E_{-}(\nu = 0)} = \mat{0 \\ 1},
+\end{align*}
+\begin{align*}
+    &\ket{E_{\pm}(\nu=0)}
+    = \lim_{\nu\to\infty} \frac{1}{\sqrt{\nu^2 + (E_{+} \mp e)^2}} \mat{ \pm \nu \\ E_{+} \mp e }
+    = \frac{1}{\sqrt{2}} \mat{\pm 1 \\ 1}.
+\end{align*}
+
+
+\subsection{Zadání druhé části}
+Mějme $N$-stavový systém s tridiagonálním Hamiltoniánem:
+\begin{align*}
+    \hat H = \mat{
+        e   & \nu & \vphantom{\ddots} \\
+        \nu & e   & \nu & \vphantom{\ddots} \\
+            & \nu & e   & \nu & \vphantom{\ddots} \\
+            &     & \nu & e   & \ddots \\
+            &     &     & \ddots & \ddots
+    }.
+\end{align*}
+Určete jeho vlastní hodnoty a normalizované vlastní vektory. Jak se bude měnit spektrum s rostoucím $N$?
+
+\subsection{První pokus o řešení druhé části}
+Úlohu jsem se nejprve pokoušel vyřešit tak, že vyjádřím determinant tridiagonální matice v uzavřené formě. Tento postup mě sice dovedl k charakteristické rovnici Hamiltoniánu v uzavřené formě, nepodařilo se mi ji ale vyřešit pro obecné $N$. Postup zde přesto nechávám pro zajímavost.
+
+\bigskip
+
+Z důvodů, které budou hned zřejmé, si zadefinujeme matice $A_N, B_N \in \mathbb{C}^{N \times N}$ lišící se pouze v prvním sloupci:
+\begin{align*}
+    &A_N =
+    \underbrace{
+        \mat{
+            a & b & \vphantom{\ddots} \\
+            b & a & b & \vphantom{\ddots} \\
+                & b & a   & \ddots \\
+            \phantom{\ddots} &     & \ddots & \ddots
+        }
+    }_{N \text{ sloupců}},
+    &
+    &B_N =
+    \underbrace{
+        \mat{
+            b & b & \vphantom{\ddots} \\
+            0 & a & b & \vphantom{\ddots} \\
+                & b & a   & \ddots \\
+            \phantom{\ddots} &     & \ddots & \ddots
+        }
+    }_{N \text{ sloupců}}.
+\end{align*}
+
+Nyní si pomocí minorů vyjádříme jejich determinanty:
+
+\begin{align*}
+    &\det
+    \mat{
+        a & b & \vphantom{\ddots} \\
+        b & a & b & \vphantom{\ddots} \\
+          & b & a & b & \vphantom{\ddots} \\
+          &   & b & a   & \ddots \\
+        \phantom{\ddots} & \phantom{\ddots} & \phantom{\ddots} & \ddots & \ddots
+    }
+    =
+    a \det
+    \mata{c|cccc}{
+          &   & \vphantom{\ddots} \\\hline
+          & a & b & \vphantom{\ddots} \\
+          & b & a & b & \vphantom{\ddots} \\
+          &   & b & a   & \ddots \\
+        \phantom{\ddots} & \phantom{\ddots} & \phantom{\ddots} & \ddots & \ddots
+    }
+    -
+    b \det
+    \mata{c|c|ccc}{
+          &   & \vphantom{\ddots} \\\hline
+        b &   & b & \vphantom{\ddots} \\
+          &   & a & b & \vphantom{\ddots} \\
+          &   & b & a   & \ddots \\
+        \phantom{\ddots} & \phantom{\ddots} & \phantom{\ddots} & \ddots & \ddots
+    },
+    \\[10pt]
+    &\det
+    \mat{
+        b & b & \vphantom{\ddots} \\
+        0 & a & b & \vphantom{\ddots} \\
+          & b & a & b & \vphantom{\ddots} \\
+          &   & b & a   & \ddots \\
+        \phantom{\ddots} & \phantom{\ddots} & \phantom{\ddots} & \ddots & \ddots
+    }
+    =
+    b \det
+    \mata{c|cccc}{
+          &   & \vphantom{\ddots} \\\hline
+          & a & b & \vphantom{\ddots} \\
+          & b & a & b & \vphantom{\ddots} \\
+          &   & b & a   & \ddots \\
+        \phantom{\ddots} & \phantom{\ddots} & \phantom{\ddots} & \ddots & \ddots
+    }.
+    \\
+\end{align*}
+Totéž zapsáno v kompaktní formě:
+\begin{align*}
+    &\det A_N = a \det A_{N-1} - b \det B_{N-1}, \\
+    &\det B_N = b \det A_{N-1}.
+    \\[5pt]
+    \implies &\det A_N = a \det A_{N-1} - b^2 \det A_{N-2}.
+\end{align*}
+Navíc vidíme, že platí:
+\begin{align*}
+    &\det A_1 = a, \\
+    &\det A_2 = a^2 - b^2.
+\end{align*}
+
+Vyřešíme tedy diferenční rovnici. Charakteristický polynom rekurence\footnote{Hlubší teorii k řešení diferenčních rovnic lze nalézt například na \url{https://en.wikipedia.org/wiki/Constant-recursive_sequence}} je:
+\begin{align*}
+    p(t) = t^2 - at + b^2,
+\end{align*}
+a jeho kořeny jsou
+\begin{align*}
+    &t_{+} = \frac{a}{2} + \sqrt{ \left( \frac{a}{2} \right)^2 - b^2 \; }, \\
+    &t_{-} = \frac{a}{2} - \sqrt{ \left( \frac{a}{2} \right)^2 - b^2 \; }.
+\end{align*}
+Hledáme tedy řešení ve tvaru
+\begin{align*}
+    \det A_n = c \, t_{+}^n + d \, t_{-}^n,
+\end{align*}
+dosazením známých hodnot $A_1$ a $A_2$ získáme hodnoty konstant. Po zjednodušení výrazu dostáváme pro determinant matice $A_N$ vztah:
+\begin{align*}
+    \det A_{N} = \frac{1}{2^{N+1} \sqrt{a^{2} - 4 b^{2}}} \left( \left(a + \sqrt{a^{2} - 4 b^{2}}\right)^{N + 1} - \left(a - \sqrt{a^{2} - 4 b^{2}}\right)^{N + 1} \right).
+\end{align*}
+
+Nyní, protože $\det\left( \hat H - \lambda \hat 1 \right) = \det A_n$ pro $a = e - \lambda, b = \nu$. Charakteristický polynom Hamiltoniánu je tedy:
+\begin{align*}
+    p(\lambda) =
+    \frac{1}{2^{N+1} \sqrt{-4\nu^{2} + \left(e-\lambda\right)^{2}}}
+    \left(
+        \left(e - \lambda + \sqrt{- 4 \nu^{2} + \left(e - \lambda\right)^{2}}\right)^{N + 1}
+        -
+        \left(e - \lambda - \sqrt{- 4 \nu^{2} + \left(e - \lambda\right)^{2}}\right)^{N + 1}
+    \right).
+\end{align*}
+
+Pomocí CAS je snadné najít řešení pro několik prvních $N\in\{1, 2, 3, \dots\}$:
+\begin{table}[h!]
+    \centering
+    \begin{tabular}{ c|c }
+        $\bm{p(\lambda)=0}$ &
+        $\bm{\lambda}$ \\
+        \hline
+        $\bm{N=1}$ &
+        $e$
+        $\vphantom{\ddots}$ \\
+        \hline
+        $\bm{N=2}$ &
+        $e - \nu, \; e + \nu$
+        $\vphantom{\ddots}$ \\
+        \hline
+        $\bm{N=3}$ &
+        $e, \; e - \sqrt{2} \nu, \; e + \sqrt{2} \nu$
+        $\vphantom{\ddots}$ \\
+        \hline
+        $\bm{N=4}$ &
+        $e + \frac{-1 + \sqrt{5}}{2}\nu, \;
+        e  + \frac{+1 + \sqrt{5}}{2}\nu, \;
+        e  + \frac{-1 - \sqrt{5}}{2}\nu, \;
+        e  + \frac{+1 - \sqrt{5}}{2}\nu$
+        $\vphantom{\ddots}$
+    \end{tabular}
+\end{table}
+
+Přestože řešení vypadají pravidelně, nepodařilo se mi najít vztah udávající řešení pro obecné $N$.
+
+\subsection{Druhý pokus o řešení druhé části}
+Vyjádříme-li si charakteristickou rovnici pro Hamiltonián, dostaneme:
+\begin{gather*}
+    \hat H \vec u = \lambda \vec u,
+    \\[10pt]
+    \mat{
+        e   & \nu & \vphantom{\ddots} \\
+        \nu & e   & \nu  & \vphantom{\ddots} \\
+            & \nu & e    & \ddots \\
+        \phantom{\ddots} &     & \ddots & \ddots
+    }
+    \mat{
+        \bm{u}^1 \vphantom{\ddots} \\
+        \bm{u}^2 \vphantom{\ddots} \\
+        \bm{u}^3 \vphantom{\ddots} \\
+        \vdots \vphantom{\ddots}
+    }
+    =
+    \mat{
+        \lambda \bm{u}^1 \vphantom{\ddots} \\
+        \lambda \bm{u}^2 \vphantom{\ddots} \\
+        \lambda \bm{u}^3 \vphantom{\ddots} \\
+        \vdots \vphantom{\ddots}
+    },
+    \\[10pt]
+    \mat{
+        e \bm{u}^1 + \nu \bm{u}^2 \vphantom{\ddots} \\
+        \nu \bm{u}^1 + e \bm{u}^2 + \nu \bm{u}^3 \vphantom{\ddots} \\
+        \nu \bm{u}^2 + e \bm{u}^3 + \nu \bm{u}^4 \vphantom{\ddots} \\
+        \vdots \vphantom{\ddots}
+    }
+    =
+    \mat{
+        \lambda \bm{u}^1 \vphantom{\ddots} \\
+        \lambda \bm{u}^2 \vphantom{\ddots} \\
+        \lambda \bm{u}^3 \vphantom{\ddots} \\
+        \vdots \vphantom{\ddots}
+    }.
+\end{gather*}
+
+Dostáváme tedy $N$-tici rovnic o $N$ neznámých:
+\begin{align*}
+    \lambda \bm{u}^1 &= e \bm{u}^1 + \nu \bm{u}^2 \\
+    \lambda \bm{u}^2 &= \nu \bm{u}^1 + e \bm{u}^2 + \nu \bm{u}^3 \\
+    &\vdots \\
+    \lambda \bm{u}^j &= \nu \bm{u}^{j-1} + e \bm{u}^j + \nu \bm{u}^{j+1} \\
+    &\vdots \\
+    \lambda \bm{u}^{N-1} &= \nu \bm{u}^{N-2} + e \bm{u}^{N-1} + \nu \bm{u}^N \\
+    \lambda \bm{u}^N &= \nu \bm{u}^{N-1} + e \bm{u}^N
+\end{align*}
+
+Všimneme si, že okrajové podmínky lze zjednodušit doplněním smyšlené nulté a $(N+1)$. složky vlastního vektoru, dostáváme tak diferenční úlohu:
+\begin{gather*}
+    \lambda \bm{u}^j = \nu \bm{u}^{j-1} + e \bm{u}^j + \nu \bm{u}^{j+1}, \\
+    \bm{u}^0 = 0, \;\;\; \bm{u}^{N+1} = 0.
+\end{gather*}
+
+Z nápovědy víme, že máme řešení hledat pomocí násady\footnote{Násada, v cizojazyčné literatuře „ansatz“, je odhad tvaru řešení. Typicky omezuje možná řešení na užší rodinu – nemusí tedy nutně vést k nalezení všech řešení, výrazně ale usnadňuje jejich hledání. V našem případě vede použití násady k nalezení $N$ řešení, což je maximální počet vlastních vektorů matice $N\times N$, žádné řešení nám tedy neušlo, stačí pouze zkontrolovat, že jsou to skutečně řešení původní úlohy.}:
+\begin{align*}
+    \bm{u}^j = c^j,
+\end{align*}
+na levé straně má horní skript význam $j$-té složky vektoru, na pravé znamená $j$-tou mocninu.
+
+\begin{align*}
+    \lambda c^j &= \nu c^{j-1} + e c^j + \nu c^{j+1} \\
+    \lambda c &= \nu + e c + \nu c^2 \\
+    0 &= \nu c^2 + (e-\lambda) c + \nu \\[10pt]
+    c_{\pm} &= \frac{\lambda-e}{2\nu} \pm \sqrt{\left(\frac{\lambda-e}{2\nu}\right)^2 - 1}
+\end{align*}
+Zajímavou vlastností kořenů je:
+\begin{align*}
+    c_{+} \, c_{-} &=
+    \left(
+        \frac{\lambda-e}{2\nu} +
+        \sqrt{\left(\frac{\lambda-e}{2\nu}\right)^2 - 1}
+    \right)
+    \left(
+        \frac{\lambda-e}{2\nu} -
+        \sqrt{\left(\frac{\lambda-e}{2\nu}\right)^2 - 1}
+    \right)
+    \\[10pt]
+    &=
+    \left(\frac{\lambda-e}{2\nu}\right)^2 -
+    \left( \left(\frac{\lambda-e}{2\nu}\right)^2 - 1 \right)
+    = 1
+    \\
+\end{align*}
+
+Protože máme dva kořeny, hledáme řešení ve tvaru
+\begin{align*}
+    \bm{u}^j = A \, {c_{+}}^j + B \, {c_{-}}^j.
+\end{align*}
+Dosazením do okrajových podmínek získáme:
+\begin{equation*}
+\begin{array}{rclclcl}
+    0 &=& \multicolumn{3}{l}{\bm{u}^0 = A \, c_{+}^{\;\;0} + B \, c_{-}^{\;\;0}} = A+B &\Leftrightarrow& B = -A
+    \\[20pt]
+    0 &=& \bm{u}^{N+1} &=& A \, c_{+}^{\;\;N+1} + B \, c_{-}^{\;\;N+1}
+    \\[10pt]
+    & & &=& A \, (c_{+}^{\;\;N+1} - c_{-}^{\;\;N+1})
+    &\Leftrightarrow& A = 0 \\[10pt]
+    & & & & &\vee& c_{+} = c_{-} = 0 \\[10pt]
+    & & & & &\vee& \left(\nicefrac{c_{+}}{c_{-}}\right)^{N+1} = 1
+\end{array}
+\end{equation*}
+Protože vlastní vektor z definice nemůže být nulový, vyřadíme řešení $A=0, \; c_{+} = c_{-} = 0$, zůstává nám tedy
+\begin{align*}
+    \bm{u}^j = A \, (c_{+}^{\;\;j} - c_{-}^{\;\;j}), \;\;\;
+    \left(\nicefrac{c_{+}}{c_{-}}\right)^{N+1} = 1. \\
+\end{align*}
+\begin{align*}
+    &\left(\nicefrac{c_{+}}{c_{-}}\right)^{N+1} = 1 = \e{2k\i\pi}, \;\;\; k\in\mathbb{N},
+    \\[10pt]
+    &\implies \nicefrac{c_{+}}{c_{-}} = \e{\tfrac{2k}{N+1}\,\i\pi},
+    \\[10pt]
+    &\implies \left( \nicefrac{c_{+}}{c_{-}} \right) \left( c_{+}\,c_{-} \right) =  \e{\tfrac{2k}{N+1}\, \i\pi},
+    \;\;\; \text{(s použitím }c_{+}\,c_{-}=1\text{)}
+    \\[10pt]
+    &\implies c_{+}^{\;2} = \e{\tfrac{2k}{N+1}\, \i\pi},
+    \\[10pt]
+    &\implies c_{+} = \pm \, \e{\tfrac{k}{N+1}\, \i\pi},
+    \;\;\; (*)
+    \\[10pt]
+    &\implies c_{+} = \e{\tfrac{k}{N+1}\, \i\pi},
+    \;\;\; c_{-} = \e{\tfrac{-k}{N+1}\; \i\pi},
+    \\[10pt]
+    &\implies \bm{u}^j = A \left( \e{\tfrac{jk}{N+1}\, \i\pi} - \e{\tfrac{-jk}{N+1}\, \i\pi} \right),
+    \;\;\; k \in \left\{ 1, 2, \, ... \; N \right\}.
+\end{align*}
+\begin{spacing}{1.9}
+\noindent
+Kde v $(*)$ jsme využili skutečnosti, že řešení ${c_{+} = - \, \e{\tfrac{k}{N+1}\, \i\pi},} \;\; {c_{-} =  - \, \e{\tfrac{-k}{N+1}\, \i\pi}}$ je stejné, jako řešení ${c_{-} = + \, \e{\tfrac{-(N+1-k)}{N+1} \, \i\pi}}$, ${c_{+} = +\, \e{\tfrac{N+1-k}{N+1} \, \i\pi}}$, můžeme tedy přestat psát $\pm$. Na posledním řádku jsme vyřadili řešení $k=0$ a $k=N+1$ – v nich $c_{+}$ a $c_{-}$ splývají, vlastní vektor by tedy vyšel nulový.
+\end{spacing}
+
+Podařilo se nám najít $N$ vlastních vektorů $\vec{u}_k$, díky násadě i bez ohledu na konkrétní hodnoty $e, \nu, \lambda$. Můžeme si tedy nyní vyjádřit vlastní hodnoty jako funkce $\lambda(e, \nu, k)$. Nejprve ale zjednodušíme a normalizujeme vektor $\vec{u}$:
+\begin{align*}
+    &\bm{u}^j = A \left( \e{\tfrac{jk}{N+1}\, \i\pi} - \e{\tfrac{-jk}{N+1}\, \i\pi} \right),
+    \\[10pt]
+    &\implies \bm{u}^j = 2 \i A \sin \left( \frac{jk\pi}{N+1} \right),
+    \\[10pt]
+    &\implies \bm{u}^j = C \sin \left( \frac{jk\pi}{N+1} \right).
+    \\
+\end{align*}
+\begin{align*}
+    &1 = \norm{ \vec{u} },
+    \\[10pt]
+    &\implies 1 = \sum_{j=1}^N \left(\bm{u}^j\right)^2,
+    \\[10pt]
+    &\implies 1 = \sum_{j=1}^N C^2 \sin^2 \left( \frac{jk\pi}{N+1} \right),
+    \\[10pt]
+    &\implies C = \left( \sum_{j=1}^N \sin^2 \left( \frac{jk\pi}{N+1} \right) \right)^{-\,\nicefrac{1}{2}},
+    \\[10pt]
+    &\implies C = 2  \left(
+        -\sin \left( \frac{ 2N + 1 }{N + 1} \; k \pi \right) \csc \left( \frac{ k \pi }{N + 1} \right) + 2N + 1
+    \right)^{-\,\nicefrac{1}{2}}.
+\end{align*}
+Poslední krok byl navržen programem Wolfram Mathematica a numericky zkontrolován pro $N \in \left\{ 1, \, ... \; 15 \right\}$, $\csc$~je~kosekans, platí pro něj $\csc \varphi = \frac{1}{\sin \varphi}$. Normalizační konstanta ovšem není příliš důležitá, v praxi můžeme vždy normalizovat stavový vektor numericky.
+
+Pojďme nyní vyjádřit $\lambda$. Začneme charakteristickou rovnicí pro první souřadnici:
+\begin{align*}
+    \lambda \bm{u}^1 &= e \bm{u}^1 + \nu \bm{u}^2,
+    \\[10pt]
+    \left( \lambda - e \right) \bm{u}^1 &= \nu \bm{u}^2,
+    \\[10pt]
+    \frac{\lambda - e}{\nu} &= \frac{\bm{u}^2}{\bm{u}^1}
+    = \frac{ \sin\left(\frac{2k \pi}{N+1}\right) }{ \sin\left(\frac{k \pi}{N+1}\right) }
+    = 2 \cos\left( \frac{k\pi}{N+1} \right),
+    \\[10pt]
+    \lambda &= e + 2\nu \cos\left( \frac{k\pi}{N+1} \right).
+\end{align*}
+Mohli jsme dělit $\bm{u}^1$, pro povolené hodnoty $k$ nikdy není nulové. Protože vlastní číslo Hamiltoniánu odpovídá energetické hladině, máme pro energii $k$-tého stavu vztah:
+\begin{align*}
+    E_k = e + 2 \nu \cos\left(\frac{k\pi}{N+1}\right).
+\end{align*}
+
+Nakonec by bylo vhodné zkontrolovat, zda násada $\bm{u}^j = c^j$ skutečně vedla na správné řešení a nalezená $\vec{u}, \lambda$ splňují charakteristickou rovnici:
+\begin{align*}
+    \lambda \bm{u}^j &= \nu \bm{u}^{j-1} + e \bm{u}^j + \nu \bm{u}^{j+1},
+    \\[10pt]
+    0 &= \nu \bm{u}^{j-1} - 2\nu \cos\left(\frac{k\pi}{N+1}\right) \bm{u}^j + \nu \bm{u}^{j+1},
+    \\[10pt]
+    0 &= \sin\left( \frac{(j-1)k\pi}{N+1} \right) + \sin\left( \frac{(j+1)k\pi}{N+1} \right) - 2 \cos\left(\frac{k\pi}{N+1}\right)\sin\left( \frac{jk\pi}{N+1} \right).
+\end{align*}
+Tato rovnost je zřejmá ze vzorce $\sin(a+b) = \cos(a)\sin(b) + \sin(a)\cos(b)$, nalezená řešení jsou tedy platná.
+
+\subsection{Výsledek druhé části}
+Zadaný Hamiltonián má vázané stavy $k \in \left\{ 1, \, ... \; N \right\}$, jim odpovídající vlastní vektory jsou:
+\begin{align*}
+    \ket{k} &= C \; \mat{
+        \sin\left( \nicefrac{k\pi}{N+1} \right) \\
+        \sin\left( \nicefrac{2k\pi}{N+1} \right) \\
+        \vdots \\
+        \sin\left( \nicefrac{Nk\pi}{N+1} \right)
+    },
+    &
+    \text{kde } \;\;
+    C &= 2  \left(
+        -\sin \left( \frac{ 2N + 1 }{N + 1} \; k \pi \right) \csc \left( \frac{ k \pi }{N + 1} \right) + 2N + 1
+    \right)^{-\,\nicefrac{1}{2}}.
+\end{align*}
+Energie $k$-tého stavu je:
+\begin{align*}
+    E_k = e + 2 \nu \cos\left(\frac{k\pi}{N+1}\right).
+\end{align*}
+V grafu je vidět zhušťování energetických hladiny s rostoucím $N$:
+\begin{figure}[h!]
+    \centering
+    \begin{gnuplot}[terminal=epslatex,terminaloptions={color size 12cm, 4.5cm}]
+
+        chi(x, N) = x >= N-0.5 ? x <= N+0.5 ? 1 : 1/0 : 1/0
+        E(x, k, N) = 2 * cos(k*pi/(N+1)) * chi(x, N)
+
+        set macros
+
+        set xlabel "$N$"
+        set ylabel "$E_k$" rotate by 0
+
+        set key center top
+
+        set xrange [0:11]
+        set yrange [-2:2]
+
+        set ytics ("$e-2\\nu$" -2, "$e-\\nu$" -1, "$e$" 0, "$e+\\nu$" 1, "$e+2\\nu$" 2)
+
+        nt = "notitle lt rgb 'red'"
+        plt = ""
+
+        do for [N=1:11] {
+            do for [k=1:N] {
+                plt = plt."E(x,".k.",".N.") ".nt.", "
+            }
+        }
+
+        plot @plt
+    \end{gnuplot}
+\end{figure}
+
+\noindent Pro $N\to\infty$ je energetické spektrum spojité a energie stavů se pohybují mezi $e-2\nu$ a $e+2\nu$.
+
+
+
+
+\pagebreak
+
+\section{Cvičení 29. 10.}
+
+
+\end{document}

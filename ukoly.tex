@@ -46,6 +46,8 @@
 \def\vph{\vphantom}
 \def\hph{\hphantom}
 
+\def\?{\mathit{?}}
+
 \newcommand{\comm}[2]{\left[ #1, #2 \right]}
 \newcommand{\const}[1]{\text{\rmfamily\upshape #1}}
 \newcommand{\norm}[1]{\left\lVert#1\right\rVert}
@@ -62,6 +64,10 @@
         #2
     \end{array}
     \right)
+}
+
+\newcommand{\smat}[2][1]{
+    \scalebox{#1}{$\mat{#2}$}
 }
 
 \renewcommand{\d}[1]{\;\const{d}#1}
@@ -343,7 +349,7 @@ dosazením známých hodnot $A_1$ a $A_2$ získáme hodnoty konstant. Po zjednod
     \det A_{N} = \frac{1}{2^{N+1} \sqrt{a^{2} - 4 b^{2}}} \left( \left(a + \sqrt{a^{2} - 4 b^{2}}\right)^{N + 1} - \left(a - \sqrt{a^{2} - 4 b^{2}}\right)^{N + 1} \right).
 \end{align*}
 
-Nyní, protože $\det\left( \hat H - \lambda \hat 1 \right) = \det A_n$ pro $a = e - \lambda, b = \nu$. Charakteristický polynom Hamiltoniánu je tedy:
+Nyní platí $\det\left( \hat H - \lambda \hat 1 \right) = \det A_n$ pro $a = e - \lambda, b = \nu$. Charakteristický polynom Hamiltoniánu je tedy:
 \begin{align*}
     p(\lambda) =
     \frac{1}{2^{N+1} \sqrt{-4\nu^{2} + \left(e-\lambda\right)^{2}}}
@@ -747,7 +753,7 @@ Pro maticové vyjádření Hamiltoniánu tedy platí:
     \right).
 \end{align*}
 
-Ze zadání jsem dosadil $M = \Omega = \hbar = b = 1$. Pomocí tohoto vzorce jsem vygeneroval matici $N \times N$ a numericky ji diagonalizoval pomocí knihovny mpmath. Vývoj prvních čtyř energetických hladin (základní $E_0$ a tři excitované $E_{1,2,3}$) v závislosti na $N$ je vidět v následujícím grafu.
+Ze zadání jsem dosadil $M = \Omega = \hbar = b = 1$. Pomocí tohoto vzorce jsem vygeneroval matici $N \times N$ a numericky ji diagonalizoval pomocí knihovny \textit{mpmath}. Vývoj prvních čtyř energetických hladin (základní $E_0$ a tři excitované $E_{1,2,3}$) v závislosti na $N$ je vidět v následujícím grafu.
 
 \begin{gnuplot}[terminal=epslatex,terminaloptions={color size 18cm, 7cm}]
     F = '3b_eigvals.dat'
@@ -768,7 +774,7 @@ Je vidět, že energie konvergují rychle. Lépe rychlost konvergence uvidíme v
     plot F using 1:2 t '$E_0$', F using 1:3 t '$E_1$', F using 1:4 t '$E_2$', F using 1:5 t '$E_3$', 1e-4 lc rgb 'grey' notitle, 1e-5 lc rgb 'red' notitle, 1e-6 lc rgb 'grey' notitle
 \end{gnuplot}
 
-Vidíme, že pro $N=30$ jsou již změny spolehlivě menší než řádu $10^{-5}$ (tudíž pod červenou čárou), pro $N=35$ jsou potom menší než $10^{6}$. Podrobnější analýza ukazuje, že pro určení prvních čtyř energií na pět platných cifer stačí $N=23$. Použitá přesnost mpmath byla řádově vyšší, zaokrouhlovací chyby a numerická stabilita použitého diagonalizačního algoritmu by tedy neměly mít vliv. Vypočtené hodnoty energetických hladin byly:
+Vidíme, že pro $N=30$ jsou již změny spolehlivě menší než řádu $10^{-5}$ (tudíž pod červenou čárou), pro $N=35$ jsou potom menší než $10^{6}$. Podrobnější analýza ukazuje, že pro určení prvních čtyř energií na pět platných cifer stačí $N=23$. Použitá přesnost knihovny \textit{mpmath} byla řádově vyšší, zaokrouhlovací chyby a numerická stabilita použitého diagonalizačního algoritmu by tedy neměly mít vliv. Vypočtené hodnoty energetických hladin byly:
 \begin{table}[h!]
     \centering
     \begin{tabular}{ c|c|c|c }
@@ -797,7 +803,7 @@ Potenciál má tři stacionární body – dvě globální minima a jedno lokál
     \\[10pt]
     0 &= x \left( x + \sqrt{\frac{a}{2b}} \right) \left( x - \sqrt{\frac{a}{2b} }\right)
 \end{align*}
-Máme vyšetřit energetické hladiny pro $\hbar = 0.03$, $M=\Omega=a=b=1$. Pro porovnání přikládám graf s $a\in{0,1,2}$:
+Máme vyšetřit energetické hladiny pro $\hbar = 0.03$, $M=\Omega=a=b=1$. Pro porovnání přikládám graf s $a\in\{0,1,2\}$:
 
 \begin{gnuplot}[terminal=epslatex,terminaloptions={color size 18cm, 7cm}]
     V(x,a,b) = -0.5 * a * x**2 + 0.5 * b * x**4
@@ -842,11 +848,11 @@ Z vypočtených hodnot je vidět, že se energetické stavy vyskytují v dublete
 \begin{align*}
     \psi_{\pm}(x) = C_N \left( \psi_l(x) \pm \psi_r(x) \right).
 \end{align*}
-Hamiltonián v $x$-reprezentaci obsahuje kladný člen $\dd{}{x}$, a protože antisymetrické řešení $\psi_{-}$ má o trochu větší druhou derivaci než symetrické řešení $\psi_{+}$, bude mít i o trochu větší energii.
+Hamiltonián v $x$-reprezentaci obsahuje kladný člen $\dd{\vph{d}^2}{x^2}$, a protože antisymetrické řešení $\psi_{-}$ má o trochu větší druhou derivaci než symetrické řešení $\psi_{+}$, bude mít i o trochu větší energii.
 
 V grafu na obrázku č. \ref{graph_E_hbar} je vynesená závislost energetických hladin na hodnotě $\hbar$. Vidíme, že pro $\hbar\to\infty$ se energie stavů rozprostřou rovnoměrně, dublety zaniknou. Naopak v klasické limitě $\hbar\to 0$ se energetické stavy vzájemně přibližují a dublety splynou v jeden stav.
 
-Zajímavá je nestejnoměrná konvergence pro $N\to\infty$ v okolí $\hbar = 0$ – zatímco pro $\hbar=0.015$ zkonvergují energetické hladiny už při $N \approx 30$, pro $\hbar = 0.002$ už je potřeba matice o straně $N = 160$. Konvergence stavů $E_0, E_2, E_4$ je vynesena v grafu na obrázku č. \ref{graph_hbar_conv}.
+Zajímavá je nestejnoměrná konvergence pro $N\to\infty$ v okolí $\hbar = 0$: zatímco pro $\hbar=0.015$ zkonvergují energetické hladiny už při $N \approx 30$, pro $\hbar = 0.002$ už je potřeba matice o straně $N = 160$. Konvergence stavů $E_0, E_2, E_4$ je vynesena v grafu na obrázku č. \ref{graph_hbar_conv}.
 
 
 \begin{figure}[p]
@@ -893,15 +899,389 @@ Zajímavá je nestejnoměrná konvergence pro $N\to\infty$ v okolí $\hbar = 0$ 
         plot F160 using 1:2 t "$N=160$" w l lt 1 lw 2, F160 using 1:4 not w l lt 1 lw 2, F160 using 1:6 not w l lt 1 lw 2, F110 using 1:2 t "$N=110$" w l lt 2 lw 2, F110 using 1:4 not w l lt 2 lw 2, F110 using 1:6 not w l lt 2 lw 2, F70 using 1:2 t "$N=70$" w l lt 3 lw 2, F70 using 1:4 not w l lt 3 lw 2, F70 using 1:6 not w l lt 3 lw 2, F45 using 1:2 t "$N=45$" w l lt 4 lw 2, F45 using 1:4 not w l lt 4 lw 2, F45 using 1:6 not w l lt 4 lw 2, F30 using 1:2 t "$N=30$" w l lt 6 lw 2, F30 using 1:4 not w l lt 6 lw 2, F30 using 1:6 not w l lt 6 lw 2, F20 using 1:2 t "$N=20$" w l lt 8 lw 2, F20 using 1:4 not w l lt 8 lw 2, F20 using 1:6 not w l lt 8 lw 2,
 
     \end{gnuplot}
-    \caption{Konvergence v okolí $\hbar=0$.}
+    \caption{Konvergence stavů $E_0, E_2, E_4$ v okolí $\hbar=0$.}
     \label{graph_hbar_conv}
 \end{figure}
 
 
 \pagebreak
 
-\section{Další cvičení}
+\section{Cvičení 18. 12.}
+\subsection{Zadání}
+Máme částici se spinem 1, velikostí magnetického momentu $\mu$, popsanou vlnovou funkcí
+\begin{align*}
+    \ket{\psi(t)}
+    \;=\; \psi_{+}(t) \, \ket{+}
+    \;+\; \psi_{0}(t) \, \ket{0}
+    \;+\; \psi_{-}(t) \, \ket{-},
+\end{align*}
+kde $\ket{-}, \ket{0}, \ket{+}$ odpovídají stavům, kdy je projekce spinu na osu $z$ rovná $-1, 0$, resp. $1$.
 
+Částice se pohybuje v magnetickém poli: nejprve je po dobu $\tau$ vystavena poli $B_0+B_1$, poté je po dobu $T$ v poli $B_0$ a nakonec opět po dobu $\tau$ v poli $B_0+B_1$. Platí:
+\begin{align*}
+    B_0 &= \mat{0 \\ 0 \\ b_0} &
+    B_1 &= \mat{
+        \ph{-} b_1 \cos \omega t \\
+        - b_1 \sin \omega t \\
+        0
+    }
+\end{align*}
+Rotace částice generují matice
+\begin{align*}
+    \const{s}_1 &= \frac{1}{\oldsqrt{2}} \mat{
+        0 & 1 & 0 \\
+        1 & 0 & 1 \\
+        0 & 1 & 0
+    },
+    &
+    \const{s}_2 &= \frac{1}{\oldsqrt{2}} \mat{
+        0 & -\i & 0 \\
+        \i & 0 & -\i \\
+        0 & \i & 0
+    },
+    &
+    \const{s}_3 &= \mat{
+        1 & 0 & 0 \\
+        0 & 0 & 0 \\
+        0 & 0 & -1
+    }.
+\end{align*}
+Vypočtěte\footnote{Povšimněte si, že následující skupina rovnic by mohla klidně posloužit jako přebal nového výtisku básnické sbírky Alkoholy od Guillauma Apollinaira. Pokud znáte nakladatele, který zvažuje tuto sbírku znovu natisknout, nezdráhejte se ho oslovit.}:
+\begin{gather*}
+    \comm{\const{s}_j}{\const{s}_k} = \?
+    \\[10pt]
+    {\const{s}_j}^{n+2} = \?
+    \\[10pt]
+    \mathbf{s}
+    \! = \!
+    (\const{s}_1, \const{s}_2, \const{s}_3)
+    \\[-2pt]
+    \exp \, \i \varphi \,
+    \hat{n} \cdot \mathbf{s}
+    \!\, = \!\, \?
+    \\[10pt]
+    \omega_{0,1} = 2 \mu \hbar^{-1} b_{0,1}
+    \\
+    \Omega = \sqrt{(\omega-\omega_0)^2 + \omega_1}
+    \\
+    \hat{n}_\Omega = \Omega^{-1}
+    \mat{ -\omega_1 & 0 & \omega-\omega_0 }^T
+    \\
+    U(t) =
+    \e{\i \omega t \, \const{s}_3}
+    \e{-\i \Omega t \, ( \hat{n}_\Omega \cdot \mathbf{s} )}
+    \\
+    \bra{j} \; U(t) \; \ket{k} = \?
+    \\
+    \\
+\end{gather*}
+
+
+\subsection{Řešení}
+Komutátor je antisymetrická lineární operace, pro tři elementy $\const{s}_1, \const{s}_2, \const{s}_3$ máme tedy tři unikátní komutátory:
+\begin{align*}
+    \comm{\const{s}_1}{\const{s}_2},
+    \;\;\;
+    \comm{\const{s}_2}{\const{s}_3},
+    \;\;\;
+    \comm{\const{s}_3}{\const{s}_1}.
+\end{align*}
+\begin{gather*}
+    \frac{1}{\oldsqrt{2}} \smat[0.7]{
+        0 & 1 & 0 \\
+        1 & 0 & 1 \\
+        0 & 1 & 0
+    }
+    \;
+    \frac{1}{\oldsqrt{2}} \smat[0.7]{
+        0 & -\i & 0 \\
+        \i & 0 & -\i \\
+        0 & \i & 0
+    }
+    -
+    \frac{1}{\oldsqrt{2}} \smat[0.7]{
+        0 & -\i & 0 \\
+        \i & 0 & -\i \\
+        0 & \i & 0
+    }
+    \;
+    \frac{1}{\oldsqrt{2}} \smat[0.7]{
+        0 & 1 & 0 \\
+        1 & 0 & 1 \\
+        0 & 1 & 0
+    }
+    =
+    \frac{\i}{2} \smat[0.7]{
+        1 & 0 & -1 \\
+        0 & 0 &  0 \\
+        1 & 0 & -1
+    }
+    -
+    \frac{\i}{2} \smat[0.7]{
+        -1 & 0 & -1 \\
+        0 & 0 & 0 \\
+        1 & 0 & 1
+    }
+    =
+    \i \smat[0.7]{
+        1 & 0 & 0 \\
+        0 & 0 & 0 \\
+        0 & 0 & -1
+    }
+    \\
+    \frac{1}{\oldsqrt{2}} \smat[0.7]{
+        0 & -\i & 0 \\
+        \i & 0 & -\i \\
+        0 & \i & 0
+    }
+    \;
+    \smat[0.7]{
+        1 & 0 & 0 \\
+        0 & 0 & 0 \\
+        0 & 0 & -1
+    }
+    -
+    \smat[0.7]{
+        1 & 0 & 0 \\
+        0 & 0 & 0 \\
+        0 & 0 & -1
+    }
+    \;
+    \frac{1}{\oldsqrt{2}} \smat[0.7]{
+        0 & -\i & 0 \\
+        \i & 0 & -\i \\
+        0 & \i & 0
+    }
+    =
+    \frac{\i}{\oldsqrt{2}} \smat[0.7]{
+        0 & 0 & 0 \\
+        1 & 0 & 1 \\
+        0 & 0 & 0
+    }
+    -
+    \frac{\i}{\oldsqrt{2}} \smat[0.7]{
+        0 & -1 & 0 \\
+        0 &  0 & 0 \\
+        0 & -1 & 0
+    }
+    =
+    \frac{\i}{\oldsqrt{2}} \smat[0.7]{
+        0 & 1 & 0 \\
+        1 & 0 & 1 \\
+        0 & 1 & 0
+    }
+    \\
+    \smat[0.7]{
+        1 & 0 & 0 \\
+        0 & 0 & 0 \\
+        0 & 0 & -1
+    }
+    \;
+    \frac{1}{\oldsqrt{2}} \smat[0.7]{
+        0 & 1 & 0 \\
+        1 & 0 & 1 \\
+        0 & 1 & 0
+    }
+    -
+    \frac{1}{\oldsqrt{2}} \smat[0.7]{
+        0 & 1 & 0 \\
+        1 & 0 & 1 \\
+        0 & 1 & 0
+    }
+    \;
+    \smat[0.7]{
+        1 & 0 & 0 \\
+        0 & 0 & 0 \\
+        0 & 0 & -1
+    }
+    =
+    \frac{1}{\oldsqrt{2}} \smat[0.7]{
+        0 & 1 & 0 \\
+        0 & 0 & 0 \\
+        0 & -1 & 0
+    }
+    -
+    \frac{1}{\oldsqrt{2}} \smat[0.7]{
+        0 & 0 & 0 \\
+        1 & 0 & -1 \\
+        0 & 0 & 0
+    }
+    =
+    \i \smat[0.7]{
+        0 & -\i & 0 \\
+        \i & 0 & -\i \\
+        0 & \i & 0
+    }
+\end{gather*}
+Zjevně tedy
+\begin{align*}
+    \comm{\const{s}_j}{\const{s}_k} =
+    \i   \; \varepsilon_{jkl} \; \const{s}_l.
+\end{align*}
+
+Pokračujeme ověřením cyklické povahy ${\const{s}_j}^2$:
+\begin{equation*}
+    \def\={\hspace{-5pt}&\hspace{-2pt}=\hspace{-2pt}&\hspace{-5pt}}
+    \begin{array}{rcccccccl}
+        {\const{s}_1}^3
+        \=
+        \frac{1}{2} \smat[0.7]{
+            0 & 1 & 0 \\
+            1 & 0 & 1 \\
+            0 & 1 & 0
+        }
+        \smat[0.7]{
+            0 & 1 & 0 \\
+            1 & 0 & 1 \\
+            0 & 1 & 0
+        }
+        \;
+        \frac{1}{\oldsqrt{2}} \smat[0.7]{
+            0 & 1 & 0 \\
+            1 & 0 & 1 \\
+            0 & 1 & 0
+        }
+        \=
+        \frac{1}{2} \smat[0.7]{
+            1 & 0 & 1 \\
+            0 & 2 & 0 \\
+            1 & 0 & 1
+        }
+        \;
+        \frac{1}{\oldsqrt{2}} \smat[0.7]{
+            0 & 1 & 0 \\
+            1 & 0 & 1 \\
+            0 & 1 & 0
+        }
+        \=
+        \frac{1}{\oldsqrt{2}} \smat[0.7]{
+            0 & 1 & 0 \\
+            1 & 0 & 1 \\
+            0 & 1 & 0
+        }
+        \=
+        \const{s}_1
+        \\
+        {\const{s}_2}^3
+        \=
+        \frac{1}{2} \smat[0.7]{
+            0 & -\i & 0 \\
+            \i & 0 & -\i \\
+            0 & \i & 0
+        }
+        \smat[0.7]{
+            0 & -\i & 0 \\
+            \i & 0 & -\i \\
+            0 & \i & 0
+        }
+        \;
+        \frac{1}{\oldsqrt{2}} \smat[0.7]{
+            0 & -\i & 0 \\
+            \i & 0 & -\i \\
+            0 & \i & 0
+        }
+        \=
+        \frac{1}{2} \smat[0.7]{
+            1 & 0 & -1 \\
+            0 & 2 & 0 \\
+            -1 & 0 & 1
+        }
+        \;
+        \frac{1}{\oldsqrt{2}} \smat[0.7]{
+            0 & -\i & 0 \\
+            \i & 0 & -\i \\
+            0 & \i & 0
+        }
+        \=
+        \frac{1}{\oldsqrt{2}} \smat[0.7]{
+            0 & 1 & 0 \\
+            1 & 0 & 1 \\
+            0 & 1 & 0
+        }
+        \=
+        \const{s}_2
+        \\
+        {\const{s}_3}^3
+        \=
+        \smat[0.7]{
+            1 & 0 & 0 \\
+            0 & 0 & 0 \\
+            0 & 0 & -1
+        }
+        \smat[0.7]{
+            1 & 0 & 0 \\
+            0 & 0 & 0 \\
+            0 & 0 & -1
+        }
+        \smat[0.7]{
+            1 & 0 & 0 \\
+            0 & 0 & 0 \\
+            0 & 0 & -1
+        }
+        \=
+        \smat[0.7]{
+            1 & 0 & 0 \\
+            0 & 0 & 0 \\
+            0 & 0 & 1
+        }
+        \smat[0.7]{
+            1 & 0 & 0 \\
+            0 & 0 & 0 \\
+            0 & 0 & -1
+        }
+        \=
+        \smat[0.7]{
+            1 & 0 & 0 \\
+            0 & 0 & 0 \\
+            0 & 0 & -1
+        }
+        \=
+        \const{s}_3
+    \end{array}
+\end{equation*}
+Platí tedy:
+\begin{gather*}
+    {\const{s}_j}^{n+2} =
+    {\const{s}_j}^{n-1} \;
+    {\const{s}_j}^3 =
+    {\const{s}_j}^{n-1} \;
+    {\const{s}_j} =
+    {\const{s}_j}^n
+    \\
+    \\
+    \exp \, \i \varphi \,
+    \hat{n} \cdot \mathbf{s}
+    =
+    \sum_{n=0}^\infty
+    \frac{1}{n!}
+    \left(
+        i \varphi
+        \left(
+            \hat{n}_1 \, \const{s}_1 +
+            \hat{n}_2 \, \const{s}_2 +
+            \hat{n}_3 \, \const{s}_3
+        \right)
+    \right)^n
+    \\
+    =
+    \sum_{n=0}^\infty
+    \frac{(i\varphi)^n}{n!}
+    \sum_{k+l+m=n}
+    \frac{n!}{k!\,l!\,m!}
+    (\hat{n}_1 \, \const{s}_1)^k \;
+    (\hat{n}_2 \, \const{s}_2)^l \;
+    (\hat{n}_3 \, \const{s}_3)^m
+    \\
+    =
+    \sum_{n=0}^\infty
+    \sum_{k=0}^n
+    \sum_{l=0}^{n-k}
+    \frac{(\i\varphi)^n}{k!\,l!\,(n-k-l)!}
+    (\hat{n}_1 \, \const{s}_1)^k \;
+    (\hat{n}_2 \, \const{s}_2)^l \;
+    (\hat{n}_3 \, \const{s}_3)^{n-k-l}
+\end{gather*}
+Což je blbost žejo uhh čas jít spát
 
 
 \end{document}

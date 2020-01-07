@@ -1237,7 +1237,39 @@ Pokračujeme ověřením cyklické povahy ${\const{s}_j}^2$:
         }
         \=
         \const{s}_3
+        \\
     \end{array}
+\end{equation*}
+\begin{equation*}
+    \left( \hat{n} \cdot \mathbf{s} \right)^3
+    =
+    \smat[0.7]{
+        n_3 & \frac{n_1 - \i n_2}{\sqrt{2}} & 0 \\
+        \frac{n_1 - \i n_2}{\sqrt{2}} & 0 & \frac{n_1 - \i n_2}{\sqrt{2}} \\
+        0 & \frac{n_1 - \i n_2}{\sqrt{2}} & -n_3
+    }^3
+    =
+    \smat[0.7]{
+        \frac{{n_1}^2}{2} + \frac{{n_2}^2}{2} + n_3 &
+        \frac{n_3(n_1 - \i n_2)}{\sqrt{2}} &
+        \frac{(n_1 - \i n_2)^2}{2} \\
+        \frac{n_3(n_1 + \i n_2)}{\sqrt{2}}  &
+        {n_1}^2 + {n_2}^2 &
+        \frac{n_3(-n_1 + \i n_2)}{\sqrt{2}}  \\
+        \frac{(n_1 + \i n_2)^2}{2} &
+        \frac{n_3(-n_1 - \i n_2)}{\sqrt{2}} &
+        \frac{{n_1}^2}{2} + \frac{{n_2}^2}{2} + n_3
+    }
+    \smat[0.7]{
+        n_3 & \frac{n_1 - \i n_2}{\sqrt{2}} & 0 \\
+        \frac{n_1 - \i n_2}{\sqrt{2}} & 0 & \frac{n_1 - \i n_2}{\sqrt{2}} \\
+        0 & \frac{n_1 - \i n_2}{\sqrt{2}} & -n_3
+    }
+    =
+    \left(
+        {n_1}^2 + {n_2}^2 + {n_3}^2
+    \right)
+    \hat{n} \cdot \mathbf{s}
 \end{equation*}
 Platí tedy:
 \begin{gather*}
@@ -1248,40 +1280,160 @@ Platí tedy:
     {\const{s}_j} =
     {\const{s}_j}^n
     \\
+    \left(\hat{n} \cdot \mathbf{s}\right)^{n+2} =
+    \norm{\hat{n}} \left(\hat{n} \cdot \mathbf{s}\right)^n =
+    \left(\hat{n} \cdot \mathbf{s}\right)^n
     \\
+    \text{pro } n \in \mathbb{N}
+    \\
+\end{gather*}
+\begin{align*}
     \exp \, \i \varphi \,
     \hat{n} \cdot \mathbf{s}
-    =
+    &=
+    \left(\exp \, \i \varphi\right)
     \sum_{n=0}^\infty
     \frac{1}{n!}
+    \left(\hat{n} \cdot \mathbf{s}\right)^n
+    \hspace{4em}
+    \boxed{\textit{$i\varphi$ je skalár $\implies$ komutuje}}
+    \\
+    &=
+    \left(\exp \, \i \varphi\right)
     \left(
-        i \varphi
-        \left(
-            \hat{n}_1 \, \const{s}_1 +
-            \hat{n}_2 \, \const{s}_2 +
-            \hat{n}_3 \, \const{s}_3
-        \right)
-    \right)^n
+        \frac{1}{0!}
+        \left(\hat{n} \cdot \mathbf{s}\right)^0
+        +
+        \sum_{n=1}^\infty
+        \frac{1}{2n!}
+        \left(\hat{n} \cdot \mathbf{s}\right)^{2n}
+        +
+        \sum_{n=1}^\infty
+        \frac{1}{(2n-1)!}
+        \left(\hat{n} \cdot \mathbf{s}\right)^{2n-1}
+    \right)
     \\
-    =
-    \sum_{n=0}^\infty
-    \frac{(i\varphi)^n}{n!}
-    \sum_{k+l+m=n}
-    \frac{n!}{k!\,l!\,m!}
-    (\hat{n}_1 \, \const{s}_1)^k \;
-    (\hat{n}_2 \, \const{s}_2)^l \;
-    (\hat{n}_3 \, \const{s}_3)^m
+    &=
+    \left(\exp \, \i \varphi\right)
+    \left(
+        \const{E}
+        +
+        \sum_{n=1}^\infty
+        \frac{1}{2n!}
+        \left(\hat{n} \cdot \mathbf{s}\right)^2
+        +
+        \sum_{n=1}^\infty
+        \frac{1}{(2n-1)!}
+        \left(\hat{n} \cdot \mathbf{s}\right)
+    \right)
     \\
-    =
+    &=
+    \left(\exp \, \i \varphi\right)
+    \left(
+        \const{E}
+        +
+        \left(\hat{n} \cdot \mathbf{s}\right)^2
+        \sum_{n=0}^\infty
+        \frac{1}{2n!}
+        +
+        \left(\hat{n} \cdot \mathbf{s}\right)
+        \sum_{n=0}^\infty
+        \frac{1}{(2n+1)!}
+    \right)
+    \\
+    &=
+    \left(\exp \, \i \varphi\right)
+    \left(
+        \const{E}
+        +
+        \left(\hat{n} \cdot \mathbf{s}\right)^2
+        \cosh(1)
+        +
+        \left(\hat{n} \cdot \mathbf{s}\right)
+        \sinh(1)
+    \right)
+\end{align*}
+Tento tvar může být teoreticky výhodný pro některé druhy numerických výpočtů (méně operací s maticemi pro mnoho různých $\varphi$). Jiný způsob vyjádření je:
+\begin{equation*}
+\begin{array}{rlll}
+    \exp \, \i \varphi \,
+    \hat{n} \cdot \mathbf{s}
+    &\displaystyle =
     \sum_{n=0}^\infty
-    \sum_{k=0}^n
-    \sum_{l=0}^{n-k}
-    \frac{(\i\varphi)^n}{k!\,l!\,(n-k-l)!}
-    (\hat{n}_1 \, \const{s}_1)^k \;
-    (\hat{n}_2 \, \const{s}_2)^l \;
-    (\hat{n}_3 \, \const{s}_3)^{n-k-l}
-\end{gather*}
-Což je blbost žejo uhh čas jít spát
+    \frac{1}{n!}
+    \left(\i \varphi\right)^n \,
+    \left(\hat{n} \cdot \mathbf{s}\right)^n
+    \\[25pt]
+    &\displaystyle =
+    \frac{\left(\i\varphi\right)^n}{0!}
+    \left(\hat{n} \cdot \mathbf{s}\right)^0
+    &\displaystyle +
+    \sum_{n=1}^\infty
+    \frac{\left(\i\varphi\right)^{2n}}{2n!}
+    \left(\hat{n} \cdot \mathbf{s}\right)^{2n}
+    &\displaystyle +
+    \sum_{n=1}^\infty
+    \frac{\left(\i\varphi\right)^{2n-1}}{(2n-1)!}
+    \left(\hat{n} \cdot \mathbf{s}\right)^{2n-1}
+    \\[25pt]
+    &\displaystyle =
+    \const{E}
+    &\displaystyle +
+    \sum_{n=1}^\infty
+    \frac{\left(-1\right)^n \, \varphi^{2n}}{2n!}
+    \left(\hat{n} \cdot \mathbf{s}\right)^2
+    &\displaystyle +
+    \sum_{n=0}^\infty
+    \frac{\left(\i\varphi\right)^{2n+1}}{(2n+1)!}
+    \left(\hat{n} \cdot \mathbf{s}\right)^{2n+1}
+    \\[25pt]
+    &\displaystyle =
+    \const{E}
+    -
+    \frac{\left(-1\right)^0}{0!}
+    \varphi^{0}
+    \left(\hat{n} \cdot \mathbf{s}\right)^2
+    &\displaystyle +
+    \sum_{n=0}^\infty
+    \frac{\left(-1\right)^n}{2n!}
+    \varphi^{2n}
+    \left(\hat{n} \cdot \mathbf{s}\right)^2
+    &\displaystyle +
+    \sum_{n=0}^\infty
+    \i
+    \frac{\left(-1\right)^n}{(2n+1)!}
+    \varphi^{2n+1}
+    \left(\hat{n} \cdot \mathbf{s}\right)
+    \\[25pt]
+    &\displaystyle =
+    \const{E}
+    -
+    \left(\hat{n} \cdot \mathbf{s}\right)^2
+    &\displaystyle +
+    \left(\hat{n} \cdot \mathbf{s}\right)^2
+    \sum_{n=0}^\infty
+    \frac{\left(-1\right)^n}{2n!}
+    \varphi^{2n}
+    &\displaystyle +
+    \left(\hat{n} \cdot \mathbf{s}\right)
+    \i
+    \sum_{n=0}^\infty
+    \frac{\left(-1\right)^n}{(2n+1)!}
+    \varphi^{2n+1}
+    \\[25pt]
+    &\displaystyle =
+    \const{E}
+    -
+    \left(\hat{n} \cdot \mathbf{s}\right)^2
+    &\displaystyle +
+    \left(\hat{n} \cdot \mathbf{s}\right)^2
+    \cos \varphi
+    &\displaystyle +
+    \left(\hat{n} \cdot \mathbf{s}\right)
+    \i
+    \sin \varphi
+\end{array}
+\end{equation*}
 
 
 \end{document}

@@ -49,7 +49,7 @@
 \def\?{\mathit{?}}
 
 \newcommand{\comm}[2]{\left[ #1, #2 \right]}
-\newcommand{\const}[1]{\text{\rmfamily\upshape #1}}
+\newcommand{\const}[1]{\text{#1}}
 \newcommand{\norm}[1]{\left\lVert#1\right\rVert}
 
 \newcommand{\mat}[1]{
@@ -967,14 +967,19 @@ Vypočtěte\footnote{Povšimněte si, že následující skupina rovnic by mohla
     \hat{n}_\Omega = \Omega^{-1}
     \mat{ -\omega_1 & 0 & \omega-\omega_0 }^T
     \\
-    U(t) =
+    \hat{U}(t) =
     \e{\i \omega t \, \const{s}_3}
     \e{-\i \Omega t \, ( \hat{n}_\Omega \cdot \mathbf{s} )}
     \\
-    \bra{j} \; U(t) \; \ket{k} = \?
+    \bra{j} \; \hat{U}(t) \; \ket{k} = \?
     \\
     \\
 \end{gather*}
+
+\bigskip
+
+Dále vypočtěte maticovou reprezentaci $\hat{U}(t; t_0) = \hat{U}(t) \; \hat{U}^{-1}(t_0)$, potom $\hat{U}_0(\tau + T; \tau) = \hat{U}(\tau + T; \tau)|_{\omega_1 = 0}$ pro vypnuté pole $B_1$. Celý průchod přístrojem potom vyjadřuje evoluční operátor $\hat{U}_F = \hat{U}(2\tau + T; \tau + T) \; \hat{U}_0(\tau + T; \tau) \; \hat{U}(\tau; 0)$ – ten vyjádřete pro $\hat{U}_F^\textit{rez.} = \hat{U}_F |_{\omega = \omega_0}$. Nakonec vypočtěte matici pravděpodobností $P^\textit{rez.}$, že když částice vletí do přístroje se spinem $j$, po opuštění přístroje jí naměříme spin $k$.
+
 
 
 \subsection{Řešení}
@@ -1432,8 +1437,156 @@ Tento tvar může být teoreticky výhodný pro některé druhy numerických vý
     \left(\hat{n} \cdot \mathbf{s}\right)
     \i
     \sin \varphi
+    \\[25pt]
+    &\multicolumn{3}{l}{
+        = \const{E} +
+        \left(\i \sin \varphi\right)
+        \left(\hat{n} \cdot \mathbf{s}\right) +
+        \left(\cos \varphi - 1\right)
+        \left(\hat{n} \cdot \mathbf{s}\right)^2
+    }
 \end{array}
 \end{equation*}
+
+Nyní můžeme pokračovat výpočtem maticové reprezentace operátoru $\hat{U}$:
+\begin{gather*}
+    \hat{U}(t) =
+    \e{\i\omega t \const{s}_3}
+    \e{-\i\Omega t \left(\hat{n}_\Omega \cdot \mathbf{s}\right)}
+    \\
+    \\
+    \e{\i\omega t \const{s}_3} =
+    \const{E} +
+    \left(\i\sin\omega t\right)\const{s}_3 +
+    \left(\cos\omega t - 1\right){\const{s}_3}^2
+    \\[5pt]
+    \e{-\i\Omega t \left(\hat{n}_\Omega \cdot \mathbf{s}\right)} =
+    \const{E} +
+    \left(-\i\sin\Omega t\right)
+    \left(\hat{n}_\Omega \cdot \mathbf{s}\right) +
+    \left(\cos\Omega t - 1\right)
+    \left(\hat{n}_\Omega \cdot \mathbf{s}\right)^2
+    \\[5pt]
+    \hat{n}_\Omega \cdot \mathbf{s}
+    =
+    \frac{\omega_1}{\Omega} \const{s}_1 +
+    \frac{\omega-\omega_0}{\Omega} \const{s}_3
+    \\
+    \\
+    \bra{j}
+    \e{\i\omega t \const{s}_3}
+    \ket{k}
+    =
+    \mat{e^{i \omega t} & 0 & 0\\0 & 1 & 0\\0 & 0 & e^{- i \omega t}}
+    \\
+    \\
+    \\
+    \bra{j}
+    \e{-\i\Omega t \left(\hat{n}_\Omega \cdot \mathbf{s}\right)}
+    \ket{k}
+    =
+    \frac{1}{2 \Omega^2} \,\cdot \\[5pt]
+    \cdot
+    \scalebox{0.6}{$\mat{2 \Omega^{2} - 2 i \Omega \left(\omega - \omega_{0}\right) \sin{\left(\Omega t \right)} + \left(\omega_{1}^{2} + 2 \left(\omega - \omega_{0}\right)^{2}\right) \left(\cos{\left(\Omega t \right)} - 1\right) & \sqrt{2} \omega_{1} \left(i \Omega \sin{\left(\Omega t \right)} + \left(- \omega + \omega_{0}\right) \left(\cos{\left(\Omega t \right)} - 1\right)\right) & \omega_{1}^{2} \left(\cos{\left(\Omega t \right)} - 1\right)\\\sqrt{2} \omega_{1} \left(i \Omega \sin{\left(\Omega t \right)} + \left(- \omega + \omega_{0}\right) \left(\cos{\left(\Omega t \right)} - 1\right)\right) & 2 \Omega^{2} + 2 \omega_{1}^{2} \left(\cos{\left(\Omega t \right)} - 1\right) & \sqrt{2} \omega_{1} \left(i \Omega \sin{\left(\Omega t \right)} + \left(\omega - \omega_{0}\right) \left(\cos{\left(\Omega t \right)} - 1\right)\right)\\\omega_{1}^{2} \left(\cos{\left(\Omega t \right)} - 1\right) & \sqrt{2} \omega_{1} \left(i \Omega \sin{\left(\Omega t \right)} + \left(\omega - \omega_{0}\right) \left(\cos{\left(\Omega t \right)} - 1\right)\right) & 2 \Omega^{2} + 2 i \Omega \left(\omega - \omega_{0}\right) \sin{\left(\Omega t \right)} + \left(\omega_{1}^{2} + 2 \left(\omega - \omega_{0}\right)^{2}\right) \left(\cos{\left(\Omega t \right)} - 1\right)}$}
+    \\
+    \\
+    \\
+    U_{jk}(t) =
+    \bra{j} \hat{U}(t) \ket{k} =
+    \bra{j}
+    \e{\i\omega t \const{s}_3}
+    \e{-\i\Omega t \left(\hat{n}_\Omega \cdot \mathbf{s}\right)}
+    \ket{k} =
+    \frac{1}{2 \Omega^2} \,\cdot \\[5pt]
+    \cdot \scalebox{0.6}{$\mat{\left(2 \Omega^{2} - 2 i \Omega \left(\omega - \omega_{0}\right) \sin{\left(\Omega t \right)} + \left(\omega_{1}^{2} + 2 \left(\omega - \omega_{0}\right)^{2}\right) \left(\cos{\left(\Omega t \right)} - 1\right)\right) e^{i \omega t} & \sqrt{2} \omega_{1} \left(i \Omega \sin{\left(\Omega t \right)} + \left(- \omega + \omega_{0}\right) \left(\cos{\left(\Omega t \right)} - 1\right)\right) e^{i \omega t} & \omega_{1}^{2} \left(\cos{\left(\Omega t \right)} - 1\right) e^{i \omega t}\\\sqrt{2} \omega_{1} \left(i \Omega \sin{\left(\Omega t \right)} + \left(- \omega + \omega_{0}\right) \left(\cos{\left(\Omega t \right)} - 1\right)\right) & 2 \Omega^{2} + 2 \omega_{1}^{2} \left(\cos{\left(\Omega t \right)} - 1\right) & \sqrt{2} \omega_{1} \left(i \Omega \sin{\left(\Omega t \right)} + \left(\omega - \omega_{0}\right) \left(\cos{\left(\Omega t \right)} - 1\right)\right)\\\omega_{1}^{2} \left(\cos{\left(\Omega t \right)} - 1\right) e^{- i \omega t} & \sqrt{2} \omega_{1} \left(i \Omega \sin{\left(\Omega t \right)} + \left(\omega - \omega_{0}\right) \left(\cos{\left(\Omega t \right)} - 1\right)\right) e^{- i \omega t} & \left(2 \Omega^{2} + 2 i \Omega \left(\omega - \omega_{0}\right) \sin{\left(\Omega t \right)} + \left(\omega_{1}^{2} + 2 \left(\omega - \omega_{0}\right)^{2}\right) \left(\cos{\left(\Omega t \right)} - 1\right)\right) e^{- i \omega t}}$}
+    \\
+    \\
+    \\
+    U_{jk}(t;t_0) =
+    \bra{j} \hat{U}(t) \; \hat{U}^\dagger(t_0) \ket{k} =
+    \bra{j}
+    \e{\i\omega t \const{s}_3}
+    \e{-\i\Omega (t-t_0) \left(\hat{n}_\Omega \cdot \mathbf{s}\right)}
+    \e{-\i\omega t_0 \const{s}_3}
+    \ket{k} =
+    \frac{1}{2 \Omega^2} \,\cdot \\[5pt]
+    \hspace{-2em}
+    \cdot \scalebox{0.48}{$\mat{\left(2 \Omega^{2} - 2 i \Omega \left(\omega - \omega_{0}\right) \sin{\left(\Omega \left(t - t_{0}\right) \right)} + \left(\omega_{1}^{2} + 2 \left(\omega - \omega_{0}\right)^{2}\right) \left(\cos{\left(\Omega \left(t - t_{0}\right) \right)} - 1\right)\right) e^{i \omega \left(t - t_{0}\right)} & \sqrt{2} \omega_{1} \left(i \Omega \sin{\left(\Omega \left(t - t_{0}\right) \right)} + \left(- \omega + \omega_{0}\right) \left(\cos{\left(\Omega \left(t - t_{0}\right) \right)} - 1\right)\right) e^{i \omega t} & \omega_{1}^{2} \left(\cos{\left(\Omega \left(t - t_{0}\right) \right)} - 1\right) e^{i \omega \left(t + t_{0}\right)}\\\sqrt{2} \omega_{1} \left(i \Omega \sin{\left(\Omega \left(t - t_{0}\right) \right)} + \left(- \omega + \omega_{0}\right) \left(\cos{\left(\Omega \left(t - t_{0}\right) \right)} - 1\right)\right) e^{- i \omega t_{0}} & 2 \Omega^{2} + 2 \omega_{1}^{2} \left(\cos{\left(\Omega \left(t - t_{0}\right) \right)} - 1\right) & \sqrt{2} \omega_{1} \left(i \Omega \sin{\left(\Omega \left(t - t_{0}\right) \right)} + \left(\omega - \omega_{0}\right) \left(\cos{\left(\Omega \left(t - t_{0}\right) \right)} - 1\right)\right) e^{i \omega t_{0}}\\\omega_{1}^{2} \left(\cos{\left(\Omega \left(t - t_{0}\right) \right)} - 1\right) e^{- i \omega \left(t + t_{0}\right)} & \sqrt{2} \omega_{1} \left(i \Omega \sin{\left(\Omega \left(t - t_{0}\right) \right)} + \left(\omega - \omega_{0}\right) \left(\cos{\left(\Omega \left(t - t_{0}\right) \right)} - 1\right)\right) e^{- i \omega t} & \left(2 \Omega^{2} + 2 i \Omega \left(\omega - \omega_{0}\right) \sin{\left(\Omega \left(t - t_{0}\right) \right)} + \left(\omega_{1}^{2} + 2 \left(\omega - \omega_{0}\right)^{2}\right) \left(\cos{\left(\Omega \left(t - t_{0}\right) \right)} - 1\right)\right) e^{- i \omega \left(t - t_{0}\right)}}$}
+    \\
+    \\
+    \\
+    U_0(\tau + T; \tau) =
+    \bra{j}
+    \e{\i\omega (\tau + T) \const{s}_3}
+    \e{-\i |\omega - \omega_0| T \left(\hat{n}_\Omega \cdot \mathbf{s}\right)}
+    \e{-\i\omega \tau \const{s}_3}
+    \ket{k} =
+    \frac{1}{2 (\omega - \omega_0)^2} \,\cdot \\[5pt]
+    \scalebox{0.5}{$\mat{\left(- 2 \left(\omega - \omega_{0}\right)^{2} \left(i \sin{\left(T \left(\omega - \omega_{0}\right) \right)} - 1\right) + \left(\omega_{1}^{2} + 2 \left(\omega - \omega_{0}\right)^{2}\right) \left(\cos{\left(T \left(\omega - \omega_{0}\right) \right)} - 1\right)\right) e^{i T \omega} & \sqrt{2} \omega_{1} \left(\omega - \omega_{0}\right) \left(e^{i T \omega} - e^{i T \omega_{0}}\right) e^{i \omega \tau} & \omega_{1}^{2} \left(\cos{\left(T \left(\omega - \omega_{0}\right) \right)} - 1\right) e^{i \omega \left(T + 2 \tau\right)}\\\sqrt{2} \omega_{1} \left(\omega - \omega_{0}\right) \left(e^{i T \left(\omega - \omega_{0}\right)} - 1\right) e^{- i \left(T \left(\omega - \omega_{0}\right) + \omega \tau\right)} & 2 \omega_{1}^{2} \left(\cos{\left(T \left(\omega - \omega_{0}\right) \right)} - 1\right) + 2 \left(\omega - \omega_{0}\right)^{2} & \sqrt{2} \omega_{1} \left(\omega - \omega_{0}\right) \left(e^{i T \left(\omega - \omega_{0}\right)} - 1\right) e^{i \omega \tau}\\\omega_{1}^{2} \left(\cos{\left(T \left(\omega - \omega_{0}\right) \right)} - 1\right) e^{- i \omega \left(T + 2 \tau\right)} & \sqrt{2} \omega_{1} \left(\omega - \omega_{0}\right) \left(e^{i T \left(\omega - \omega_{0}\right)} - 1\right) e^{- i \omega \left(T + \tau\right)} & \left(2 \left(\omega - \omega_{0}\right)^{2} \left(i \sin{\left(T \left(\omega - \omega_{0}\right) \right)} + 1\right) + \left(\omega_{1}^{2} + 2 \left(\omega - \omega_{0}\right)^{2}\right) \left(\cos{\left(T \left(\omega - \omega_{0}\right) \right)} - 1\right)\right) e^{- i T \omega}}$}
+    \\
+    \\
+    \\
+    U_0^\textit{rez.}(\tau + T; \tau) =
+    \bra{j}
+    \e{\i\omega_0 (\tau + T) \const{s}_3}
+    \e{-\i 0 T \left(\hat{n}_\Omega \cdot \mathbf{s}\right)}
+    \e{-\i\omega_0 \tau \const{s}_3}
+    \ket{k} =
+    \mat{\e{\i T \omega_0} & 0 & 0\\0 & 1 & 0\\0 & 0 & \e{- \i T \omega_0}}
+    \\
+\end{gather*}
+\begin{gather*}
+    \\
+    U_F^\textit{rez.} =
+    \left(U(2\tau + T; \tau + T) |_{\omega=\omega_0}\right) \;
+    \left(U_0^\textit{rez.}(\tau + T; \tau)\right) \;
+    \left(U(\tau; 0) |_{\omega=\omega_0}\right) =
+    \\[5pt]
+    \bra{j}
+    \;\;\;
+    % U1
+    \e{\i\omega_0 (2\tau + T) \const{s}_3}
+    \e{\i\omega_1  \tau \const{s}_1}
+    \e{-\i\omega_0 (\tau + T) \const{s}_3}
+    % U0
+    \e{\i\omega_0 (\tau + T) \const{s}_3}
+    \e{-\i\omega_0 \tau \const{s}_3}
+    % U2
+    \e{\i\omega \tau \const{s}_3}
+    \e{-\i\omega_1 \tau \const{s}_1}
+    \ket{k} =
+    \\[5pt]
+    \bra{j}
+    \;\;\;
+    \e{\i\omega_0 (2\tau + T) \const{s}_3}
+    \e{\i\omega_1  \tau \const{s}_1}
+    \const{E}
+    \e{\i\omega_1 \tau \const{s}_1}
+    \;\;\;
+    \ket{k} =
+    \bra{j}
+    \;\;\;
+    \e{\i\omega_0 (2\tau + T) \const{s}_3}
+    \e{\i\omega_1 2 \tau \const{s}_1}
+    \;\;\;
+    \ket{k} =
+    \\[10pt]
+    \frac{1}{2}
+    \scalebox{0.9}{$\mat{\left(\cos{\left(2 \omega_{1} \tau \right)} + 1\right) e^{i \omega_{0} \left(T + 2 \tau\right)} & \sqrt{2} \left(- \sin{\left(\omega_{0} \left(T + 2 \tau\right) \right)} + i \cos{\left(\omega_{0} \left(T + 2 \tau\right) \right)}\right) \sin{\left(2 \omega_{1} \tau \right)} & \left(\cos{\left(2 \omega_{1} \tau \right)} - 1\right) e^{i \omega_{0} \left(T + 2 \tau\right)}\\\sqrt{2} i \sin{\left(2 \omega_{1} \tau \right)} & 2 \cos{\left(2 \omega_{1} \tau \right)} & \sqrt{2} i \sin{\left(2 \omega_{1} \tau \right)}\\\left(\cos{\left(2 \omega_{1} \tau \right)} - 1\right) e^{- i \omega_{0} \left(T + 2 \tau\right)} & \sqrt{2} \left(\sin{\left(\omega_{0} \left(T + 2 \tau\right) \right)} + i \cos{\left(\omega_{0} \left(T + 2 \tau\right) \right)}\right) \sin{\left(2 \omega_{1} \tau \right)} & \left(\cos{\left(2 \omega_{1} \tau \right)} + 1\right) e^{- i \omega_{0} \left(T + 2 \tau\right)}}$}
+\end{gather*}
+Matici časového vývoje máme. Nyní zbývá spočíst matici pravděpodobností $P^\textit{rez.}$:
+\begin{gather*}
+    P^\textit{rez.}_{jk}
+    =
+    \left| \bra{j} U_F^\textit{rez.} \ket{k} \right|^2
+    =
+    \left|\left( U_F^\textit{rez.} \right)_{jk} \right|^2
+    \implies
+    \\[10pt]
+    P^\textit{rez.}_{jk} =
+    \mat{\cos^{4}{\left(\omega_{1} \tau \right)} & \frac{\sin^{2}{\left(2 \omega_{1} \tau \right)}}{2} & \sin^{4}{\left(\omega_{1} \tau \right)}\\\frac{\sin^{2}{\left(2 \omega_{1} \tau \right)}}{2} & \cos^{2}{\left(2 \omega_{1} \tau \right)} & \frac{\sin^{2}{\left(2 \omega_{1} \tau \right)}}{2}\\\sin^{4}{\left(\omega_{1} \tau \right)} & \frac{\sin^{2}{\left(2 \omega_{1} \tau \right)}}{2} & \cos^{4}{\left(\omega_{1} \tau \right)}}.
+\end{gather*}
+
 
 
 \end{document}

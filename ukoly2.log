@@ -1,10 +1,10 @@
-This is XeTeX, Version 3.14159265-2.6-0.99998 (TeX Live 2017/Debian) (preloaded format=xelatex 2019.12.11)  8 JAN 2020 12:06
+This is XeTeX, Version 3.14159265-2.6-0.99998 (TeX Live 2017/Debian) (preloaded format=xelatex 2019.12.11)  5 FEB 2020 17:13
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
  %&-line parsing enabled.
-**/home/m93a/Dokumenty/kvantovka/ukoly
-(/home/m93a/Dokumenty/kvantovka/ukoly.tex
+**/home/m93a/Dokumenty/kvantovka-ukol/ukoly2
+(/home/m93a/Dokumenty/kvantovka-ukol/ukoly2.tex
 LaTeX2e <2017-04-15>
 Babel <3.18> and hyphenation patterns for 84 language(s) loaded.
 (/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
@@ -312,13 +312,43 @@ LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
 (Font)                  U/euf/m/n --> U/euf/b/n on input line 106.
 )) (/usr/share/texlive/texmf-dist/tex/latex/was/gensymb.sty
 Package: gensymb 2003/07/02 v1.0 (WaS)
+) (/usr/share/texlive/texmf-dist/tex/latex/mathtools/mathtools.sty
+Package: mathtools 2018/01/08 v1.21 mathematical typesetting tools
+ (/usr/share/texlive/texmf-dist/tex/latex/tools/calc.sty
+Package: calc 2014/10/28 v4.3 Infix arithmetic (KKT,FJ)
+\calc@Acount=\count121
+\calc@Bcount=\count122
+\calc@Adimen=\dimen127
+\calc@Bdimen=\dimen128
+\calc@Askip=\skip50
+\calc@Bskip=\skip51
+LaTeX Info: Redefining \setlength on input line 80.
+LaTeX Info: Redefining \addtolength on input line 81.
+\calc@Ccount=\count123
+\calc@Cskip=\skip52
+) (/usr/share/texlive/texmf-dist/tex/latex/mathtools/mhsetup.sty
+Package: mhsetup 2017/03/31 v1.3 programming setup (MH)
+)
+LaTeX Info: Thecontrolsequence`\('isalreadyrobust on input line 129.
+LaTeX Info: Thecontrolsequence`\)'isalreadyrobust on input line 129.
+LaTeX Info: Thecontrolsequence`\['isalreadyrobust on input line 129.
+LaTeX Info: Thecontrolsequence`\]'isalreadyrobust on input line 129.
+\g_MT_multlinerow_int=\count124
+\l_MT_multwidth_dim=\dimen129
+\origjot=\skip53
+\l_MT_shortvdotswithinadjustabove_dim=\dimen130
+\l_MT_shortvdotswithinadjustbelow_dim=\dimen131
+\l_MT_above_intertext_sep=\dimen132
+\l_MT_below_intertext_sep=\dimen133
+\l_MT_above_shortintertext_sep=\dimen134
+\l_MT_below_shortintertext_sep=\dimen135
 ) (/usr/share/texlive/texmf-dist/tex/latex/units/units.sty
 Package: units 1998/08/04 v0.9b Typesetting units
  (/usr/share/texlive/texmf-dist/tex/latex/units/nicefrac.sty
 Package: nicefrac 1998/08/04 v0.9b Nice fractions
-\L@UnitsRaiseDisplaystyle=\skip50
-\L@UnitsRaiseTextstyle=\skip51
-\L@UnitsRaiseScriptstyle=\skip52
+\L@UnitsRaiseDisplaystyle=\skip54
+\L@UnitsRaiseTextstyle=\skip55
+\L@UnitsRaiseScriptstyle=\skip56
 )) (/usr/share/texlive/texmf-dist/tex/latex/tools/bm.sty
 Package: bm 2017/01/16 v1.2c Bold Symbol Support (DPC/FMi)
 \symboldoperators=\mathgroup6
@@ -336,25 +366,25 @@ Package: verbatim 2014/10/28 v1.5q LaTeX2e package for verbatim enhancements
 \verbatim@line=\toks25
 \verbatim@in@stream=\read2
 )
-\tab@position=\count121
-\tab@size=\count122
-\listing@line=\count123
+\tab@position=\count125
+\tab@size=\count126
+\listing@line=\count127
 ) (/usr/share/texlive/texmf-dist/tex/generic/oberdiek/catchfile.sty
 Package: catchfile 2016/05/16 v1.7 Catch the contents of a file (HO)
 )
 \verbatim@out=\write4
-runsystem(touch w18-test-202018726.tex)...disabled (restricted).
+runsystem(touch w18-test-2020251033.tex)...disabled (restricted).
 
-runsystem(rm -f w18-test-202018726.tex)...disabled (restricted).
+runsystem(rm -f w18-test-2020251033.tex)...disabled (restricted).
 
-runsystem(rm -f "ukoly.gnuploterrors")...disabled (restricted).
+runsystem(rm -f "ukoly2.gnuploterrors")...disabled (restricted).
 
 
 
 Package gnuplottex Warning: Shell escape not enabled.
 (gnuplottex)                You'll need to convert the graphs yourself..
 
-\c@fignum=\count124
+\c@fignum=\count128
 ) (/usr/share/texlive/texmf-dist/tex/latex/oberdiek/epstopdf.sty
 Package: epstopdf 2016/05/15 v2.6 Conversion with epstopdf on the fly (HO)
  (/usr/share/texlive/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
@@ -365,27 +395,49 @@ Package: grfext 2016/05/16 v1.2 Manage graphics extensions (HO)
 
 Package epstopdf Warning: Drivers other than `pdftex' and `luatex' are not supported.
 
-)) (./ukoly.aux)
-\openout1 = `ukoly.aux'.
+)) (./ukoly2.aux
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 84.
-LaTeX Font Info:    ... okay on input line 84.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 84.
-LaTeX Font Info:    ... okay on input line 84.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 84.
-LaTeX Font Info:    ... okay on input line 84.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 84.
-LaTeX Font Info:    ... okay on input line 84.
-LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 84.
-LaTeX Font Info:    ... okay on input line 84.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 84.
-LaTeX Font Info:    ... okay on input line 84.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 84.
-LaTeX Font Info:    ... okay on input line 84.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 84.
-LaTeX Font Info:    ... okay on input line 84.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 84.
-LaTeX Font Info:    ... okay on input line 84.
+LaTeX Warning: Label `' multiply defined.
+
+
+LaTeX Warning: Label `' multiply defined.
+
+
+LaTeX Warning: Label `' multiply defined.
+
+
+LaTeX Warning: Label `' multiply defined.
+
+
+LaTeX Warning: Label `' multiply defined.
+
+
+LaTeX Warning: Label `' multiply defined.
+
+
+LaTeX Warning: Label `' multiply defined.
+
+)
+\openout1 = `ukoly2.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 90.
+LaTeX Font Info:    ... okay on input line 90.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 90.
+LaTeX Font Info:    ... okay on input line 90.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 90.
+LaTeX Font Info:    ... okay on input line 90.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 90.
+LaTeX Font Info:    ... okay on input line 90.
+LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 90.
+LaTeX Font Info:    ... okay on input line 90.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 90.
+LaTeX Font Info:    ... okay on input line 90.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 90.
+LaTeX Font Info:    ... okay on input line 90.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 90.
+LaTeX Font Info:    ... okay on input line 90.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 90.
+LaTeX Font Info:    ... okay on input line 90.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: xetex
@@ -422,176 +474,134 @@ LaTeX Font Info:    ... okay on input line 84.
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
 \AtBeginShipoutBox=\box29
-Package hyperref Info: Link coloring OFF on input line 84.
+Package hyperref Info: Link coloring OFF on input line 90.
 (/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2016/05/21 v2.44 Cross-referencing by name of section
  (/usr/share/texlive/texmf-dist/tex/generic/oberdiek/gettitlestring.sty
 Package: gettitlestring 2016/05/16 v1.5 Cleanup title references (HO)
 )
-\c@section@level=\count125
+\c@section@level=\count129
 )
-LaTeX Info: Redefining \ref on input line 84.
-LaTeX Info: Redefining \pageref on input line 84.
-LaTeX Info: Redefining \nameref on input line 84.
- (./ukoly.out) (./ukoly.out)
+LaTeX Info: Redefining \ref on input line 90.
+LaTeX Info: Redefining \pageref on input line 90.
+LaTeX Info: Redefining \nameref on input line 90.
+ (./ukoly2.out) (./ukoly2.out)
 \@outlinefile=\write5
-\openout5 = `ukoly.out'.
+\openout5 = `ukoly2.out'.
 
-LaTeX Info: Redefining \celsius on input line 84.
-Package gensymb Info: Faking symbols for \degree and \celsius on input line 84.
+LaTeX Info: Redefining \celsius on input line 90.
+Package gensymb Info: Faking symbols for \degree and \celsius on input line 90.
 
 
 Package gensymb Warning: Not defining \perthousand.
 
-LaTeX Info: Redefining \ohm on input line 84.
-Package gensymb Info: Using \Omega for \ohm on input line 84.
+LaTeX Info: Redefining \ohm on input line 90.
+Package gensymb Info: Using \Omega for \ohm on input line 90.
 
 Package gensymb Warning: Not defining \micro.
 
-LaTeX Font Info:    Try loading font information for OT1+lmr on input line 91.
+LaTeX Font Info:    Try loading font information for OT1+lmr on input line 97.
 (/usr/share/texmf/tex/latex/lm/ot1lmr.fd
 File: ot1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-LaTeX Font Info:    Try loading font information for OML+lmm on input line 91.
+LaTeX Font Info:    Try loading font information for OML+lmm on input line 97.
  (/usr/share/texmf/tex/latex/lm/omllmm.fd
 File: omllmm.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-LaTeX Font Info:    Try loading font information for OMS+lmsy on input line 91.
+LaTeX Font Info:    Try loading font information for OMS+lmsy on input line 97.
  (/usr/share/texmf/tex/latex/lm/omslmsy.fd
 File: omslmsy.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-LaTeX Font Info:    Try loading font information for OMX+lmex on input line 91.
+LaTeX Font Info:    Try loading font information for OMX+lmex on input line 97.
  (/usr/share/texmf/tex/latex/lm/omxlmex.fd
 File: omxlmex.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <12> on input line 91.
+(Font)              <12> on input line 97.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <8> on input line 91.
+(Font)              <8> on input line 97.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <6> on input line 91.
-LaTeX Font Info:    Try loading font information for U+msa on input line 91.
+(Font)              <6> on input line 97.
+LaTeX Font Info:    Try loading font information for U+msa on input line 97.
  (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 91.
+LaTeX Font Info:    Try loading font information for U+msb on input line 97.
  (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ) (/usr/share/texlive/texmf-dist/tex/generic/oberdiek/se-ascii-print.def
 File: se-ascii-print.def 2016/05/16 v1.11 stringenc: Printable ASCII characters
 )
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <10> on input line 95.
+(Font)              <10> on input line 102.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <7> on input line 95.
+(Font)              <7> on input line 102.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <5> on input line 95.
- [1
+(Font)              <5> on input line 102.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 124.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 124.
+
+File: disperzni1.pdf Graphic file (type pdf)
+<use disperzni1.pdf>
+File: disperzni10.pdf Graphic file (type pdf)
+<use disperzni10.pdf>
+[1
 
 ] [2]
-\openout4 = `ukoly-gnuplottex-fig1.gnuplot'.
-
- Opening gnuplot stream ukoly-gnuplottex-fig1.gnuplot (./ukoly-gnuplottex-fig1.tex
-\gptboxheight=\skip53
-\gptboxwidth=\skip54
-\gptboxtext=\box30
-File: ukoly-gnuplottex-fig1.eps Graphic file (type eps)
-<ukoly-gnuplottex-fig1.eps>
-) [3] [4] [5] [6]
-Overfull \hbox (0.48119pt too wide) in paragraph at lines 523--525
-\TU/lmr/m/n/10 Kde v $\OT1/lmr/m/n/10 (\OMS/lmsy/m/n/10 ^^C\OT1/lmr/m/n/10 )$ \TU/lmr/m/n/10 jsme využili skutečnosti, že řešení $[]  []$ je stejné, jako řešení $[]$,
- []
-
-[7]
-\openout4 = `ukoly-gnuplottex-fig2.gnuplot'.
-
- Opening gnuplot stream ukoly-gnuplottex-fig2.gnuplot (./ukoly-gnuplottex-fig2.tex
-File: ukoly-gnuplottex-fig2.eps Graphic file (type eps)
-<ukoly-gnuplottex-fig2.eps>
-) [8] [9]
-Overfull \hbox (15.21243pt too wide) detected at line 754
-[]
- []
-
-\openout4 = `ukoly-gnuplottex-fig3.gnuplot'.
-
-Opening gnuplot stream ukoly-gnuplottex-fig3.gnuplot (./ukoly-gnuplottex-fig3.tex
-File: ukoly-gnuplottex-fig3.eps Graphic file (type eps)
-<ukoly-gnuplottex-fig3.eps>
-)
-Overfull \hbox (14.94992pt too wide) in paragraph at lines 763--764
-[][]
- []
+File: grupova1_q.pdf Graphic file (type pdf)
+<use grupova1_q.pdf>
+File: grupova10_q.pdf Graphic file (type pdf)
+<use grupova10_q.pdf>
+File: grupova1_E.pdf Graphic file (type pdf)
+<use grupova1_E.pdf>
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 763--764
+LaTeX Warning: `!h' float specifier changed to `!ht'.
 
- []
+File: grupova10_E.pdf Graphic file (type pdf)
+<use grupova10_E.pdf>
 
-\openout4 = `ukoly-gnuplottex-fig4.gnuplot'.
-
-Opening gnuplot stream ukoly-gnuplottex-fig4.gnuplot [10] (./ukoly-gnuplottex-fig4.tex
-File: ukoly-gnuplottex-fig4.eps Graphic file (type eps)
-<ukoly-gnuplottex-fig4.eps>
-)
-Overfull \hbox (14.94992pt too wide) in paragraph at lines 775--776
-[][]
- []
+LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 775--776
-
- []
-
-\openout4 = `ukoly-gnuplottex-fig5.gnuplot'.
-
-Opening gnuplot stream ukoly-gnuplottex-fig5.gnuplot (./ukoly-gnuplottex-fig5.tex
-File: ukoly-gnuplottex-fig5.eps Graphic file (type eps)
-<ukoly-gnuplottex-fig5.eps>
-)
-Overfull \hbox (14.94992pt too wide) in paragraph at lines 818--819
-[][]
- []
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 222.
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 818--819
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 222.
 
- []
+[3] [4]
+File: disperzni-1_neg.pdf Graphic file (type pdf)
+<use disperzni-1_neg.pdf>
+File: disperzni-10_neg.pdf Graphic file (type pdf)
+<use disperzni-10_neg.pdf>
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 279.
+ [5]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 279.
+ (./ukoly2.aux)
+Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 279.
+Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 279.
 
-[11]
-\openout4 = `ukoly-gnuplottex-fig6.gnuplot'.
 
- Opening gnuplot stream ukoly-gnuplottex-fig6.gnuplot (./ukoly-gnuplottex-fig6.tex
-File: ukoly-gnuplottex-fig6.eps Graphic file (type eps)
-<ukoly-gnuplottex-fig6.eps>
-)
-\openout4 = `ukoly-gnuplottex-fig7.gnuplot'.
+LaTeX Warning: There were multiply-defined labels.
 
- Opening gnuplot stream ukoly-gnuplottex-fig7.gnuplot (./ukoly-gnuplottex-fig7.tex
-File: ukoly-gnuplottex-fig7.eps Graphic file (type eps)
-<ukoly-gnuplottex-fig7.eps>
-) [12] [13] [14]
-Overfull \hbox (22.00838pt too wide) detected at line 1537
-[]
- []
-
-[15] [16] (./ukoly.gnuploterrors)
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1592.
- [17]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 1592.
- (./ukoly.aux)
-Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 1592.
-Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 1592.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1592.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 279.
  )
 (\end occurred when \ifx on line 161 was incomplete) 
 Here is how much of TeX's memory you used:
- 11940 strings out of 493007
- 177597 string characters out of 6136718
- 325385 words of memory out of 5000000
- 15663 multiletter control sequences out of 15000+600000
- 62656 words of font info for 81 fonts, out of 8000000 for 9000
+ 12407 strings out of 493007
+ 186104 string characters out of 6136718
+ 286488 words of memory out of 5000000
+ 16169 multiletter control sequences out of 15000+600000
+ 49946 words of font info for 72 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
- 40i,27n,46p,1870b,434s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 40i,18n,46p,920b,350s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on ukoly.pdf (17 pages).
+Output written on ukoly2.pdf (5 pages).
